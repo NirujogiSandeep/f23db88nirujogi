@@ -54,7 +54,7 @@ exports.sea_view_all_Page = async function(req, res) {
     res.send(`{"error": ${err}}`);
     }
     };
-    // Handle Costume update form on PUT.
+    // Handle sea update form on PUT.
 exports.sea_update_put = async function(req, res) {
 console.log(`update on id ${req.params.id} with body
 ${JSON.stringify(req.body)}`)
@@ -97,3 +97,15 @@ exports.sea_create_post = async function(req, res) {
     }
     };
     
+    // Handle sea delete on DELETE.
+exports.sea_delete = async function(req, res) {
+    console.log("delete " + req.params.id)
+    try {
+    result = await sea.findByIdAndDelete( req.params.id)
+    console.log("Removed " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": Error deleting ${err}}`);
+    }
+   };
