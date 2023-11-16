@@ -1,0 +1,28 @@
+extends layout
+block content
+ h1= title
+ form(id='seaForm', action="/resource/sea", method="POST")
+  div.form-group
+   label.seaAttr(for='name') sea NAME
+   input#name(type='text', name='name')
+  div.form-group
+   label.seaAttr(for='sizeinkm') size in km
+   input#sizeinkm(type='number', name='sizeinkm')
+  div.form-group
+   label.seaAttr(for='location') sea location
+   input#location(type='text', name='location')
+  input(type="submit")
+ script.
+  document.forms['seaForm'].addEventListener('submit', (event) => {
+    event.preventDefault();
+    fetch(event.target.action, {
+        method: 'POST',
+        body: new URLSearchParams(new FormData(event.target)) 
+    }).then((resp) => {
+        return resp.json();
+    }).then((body) => {
+        alert("Save succeded")
+    }).catch((error) => {
+        alert("Save failed " + error )
+    });
+   });

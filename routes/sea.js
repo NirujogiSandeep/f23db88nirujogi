@@ -16,4 +16,11 @@ router.get('/', sea_controlers.sea_view_all_Page );
 
 /* GET detail sea page */
 router.get('/detail', sea_controlers.sea_view_one_Page);
+/* GET create sea page */
+router.get('/create', sea_controlers.sea_create_Page);
+/* GET create update page */
+router.get('/update', sea_controlers.sea_update_Page);
+
+/* GET delete sea page */
+router.get('/delete', sea_controlers.sea_delete_Page);
 module.exports = router;

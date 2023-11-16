@@ -1,0 +1,43 @@
+extends layout
+
+block content
+  h1= title
+  if(toShow == null)
+    h2 No seas to update
+  else
+   - let seaid = toShow._id
+   - let name = toShow.name
+   - let sizeinkm = toShow.sizeinkm
+   - let location = toShow.location
+
+   div.row(class='mb-2')
+     div.mr-1 ID is
+     div #{seaid}
+
+   - let actionid = "/resource/sea/" + seaid
+   form(id='seaForm', action=actionid, method="PUT")
+     div.form-group
+       label.seaAttr(for='name') sea Name
+       input#name(type='text', name='name', value=name)
+     div.form-group
+       label.seaAttr(for='sizeinkm') sea size
+       input#sizeinkm(type='number', name='sizeinkm', value=sizeinkm)
+     div.form-group
+       label.seaAttr(for='location') sea 
+       input#location(type='text', name='location', value=location)
+     input(type="submit")
+
+   script.
+     document.forms['seaForm'].addEventListener('submit', (event) => {
+       event.preventDefault();
+       fetch(event.target.action, {
+           method: 'PUT',
+           body: new URLSearchParams(new FormData(event.target)) 
+       }).then((resp) => {
+           return resp.json();
+       }).then((body) => {
+           alert("Save succeeded")
+       }).catch((error) => {
+           alert("Save failed " + error )
+       });
+     });
