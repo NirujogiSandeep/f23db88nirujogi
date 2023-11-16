@@ -1,0 +1,25 @@
+extends layout
+block content
+ h1= title
+ if(toShow == null)
+    h2 No seas to read
+ else
+  - let seaid = toShow._id
+  - let name = toShow.name
+  - let sizeinkm = toShow.sizeinkm
+  - let location = toShow.location
+  div
+  div.row
+  div(class='seaAttr mr-3') collection ID is:
+  div #{seaid}
+  div.row
+  div(class='seaAttr mr-3') sea Name is:
+  div #{name}
+  div.row
+  div(class='seaAttr mr-3') sea sizeinkm is:
+  div #{sizeinkm}
+  div.row
+  div(class='seaAttr mr-3') sea location is:
+  div #{location}
+
+

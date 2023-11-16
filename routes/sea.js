@@ -13,4 +13,7 @@ const sea_controlers= require('../controllers/sea');
 var router = express.Router();
 /* GET seas */
 router.get('/', sea_controlers.sea_view_all_Page );
+
+/* GET detail sea page */
+router.get('/detail', sea_controlers.sea_view_one_Page);
 module.exports = router;
