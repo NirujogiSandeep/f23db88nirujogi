@@ -25,7 +25,9 @@ block content
      div.form-group
        label.seaAttr(for='location') sea 
        input#location(type='text', name='location', value=location)
-     input(type="submit")
+     input(class="btn btn-danger m-2" type="submit")
+     
+     button(class="btn btn-success m-2" onclick="cancel()") Cancel
 
    script.
      document.forms['seaForm'].addEventListener('submit', (event) => {
