@@ -11,16 +11,25 @@ module.exports = router;*/
 var express = require('express');
 const sea_controlers= require('../controllers/sea');
 var router = express.Router();
+// A little function to check if we have an authorized user and continue on
+
+// redirect to login.
+const secured = (req, res, next) => {
+ if (req.user){
+ return next();
+ }
+ res.redirect("/login");
+ }
 /* GET seas */
 router.get('/', sea_controlers.sea_view_all_Page );
 
 /* GET detail sea page */
-router.get('/detail', sea_controlers.sea_view_one_Page);
+router.get('/detail',secured, sea_controlers.sea_view_one_Page);
 /* GET create sea page */
-router.get('/create', sea_controlers.sea_create_Page);
+router.get('/create',secured, sea_controlers.sea_create_Page);
 /* GET create update page */
-router.get('/update', sea_controlers.sea_update_Page);
+router.get('/update', secured,sea_controlers.sea_update_Page);
 
 /* GET delete sea page */
-router.get('/delete', sea_controlers.sea_delete_Page);
+router.get('/delete',secured, sea_controlers.sea_delete_Page);
 module.exports = router;
